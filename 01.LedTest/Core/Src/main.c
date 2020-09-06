@@ -95,37 +95,14 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  HAL_Delay(100);
+	  HAL_GPIO_TogglePin(LD2_LED_GPIO_Port, LD2_LED_Pin);
+	  LED_State = HAL_GPIO_ReadPin(LD2_LED_GPIO_Port, LD2_LED_Pin);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-#ifndef JF
-	//主机模式接收
-	/* Timeout is set to 10S */
-	uint16_t I2C_ADDRESS = 0x24;
-	uint8_t aRxBuffer[1];
-	uint16_t RXBUFFERSIZE = 1;
-	while(HAL_I2C_Master_Receive(&hi2c1, (uint16_t)I2C_ADDRESS, (uint8_t *)aRxBuffer, RXBUFFERSIZE, 10000) != HAL_OK)
-	{
-		  HAL_Delay(100);
-		  HAL_GPIO_TogglePin(LD2_LED_GPIO_Port, LD2_LED_Pin);
-		  LED_State = HAL_GPIO_ReadPin(LD2_LED_GPIO_Port, LD2_LED_Pin);
-		/* Error_Handler() function is called when Timeout error occurs.
-		When Acknowledge failure occurs (Slave don't acknowledge it's address)
-		Master restarts communication */
-		if (HAL_I2C_GetError(&hi2c1) != HAL_I2C_ERROR_AF)
-		{
-			Error_Handler();
-		}
-
-		a = aRxBuffer[0];
-		HAL_Delay(100);
-	}
-
-
-	printf("%d", aRxBuffer[0]);
-#endif
   /* USER CODE END 3 */
+  }
 }
 
 /**
