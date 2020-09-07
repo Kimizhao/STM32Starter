@@ -29,3 +29,8 @@
 
 参考1：https://www.youtube.com/watch?v=Oc58Ikj-lNI
 
+### 05.I2C
+
+参考1：https://www.youtube.com/watch?v=A1CIOUZdeR4
+
+SCL和SDA芯片管脚取消内部上拉，通过外部上拉5k欧
